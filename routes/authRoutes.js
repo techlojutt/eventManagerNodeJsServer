@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerController, loginController, testController } = require('../controllers/authController');
+const { registerController, loginController, testController,tokenValidationController } = require('../controllers/authController');
 const {authMiddleware,} = require('../middlewares/authMiddleware');
 
 
@@ -16,6 +16,10 @@ authRouter.post('/register',registerController);
 //Login||Method POST
 
 authRouter.post('/login',loginController);
+
+
+authRouter.post('/validateToken',authMiddleware,tokenValidationController);
+
 
 
 

@@ -115,6 +115,34 @@ const loginController = async (req, res) => {
         }
 };
 
+const tokenValidationController = async (req, res) => {
+    try{
+        const user = await Users.findById(req.user.id);
+        user = {
+            name:user.name,
+            email:user.email,
+            id:user._id,
+            imageURL:user.imageURL,
+            created_at:user.createdAt,
+            updated_at:user.updatedAt,
+        }
+        res.status(200).json({
+            data:user,
+            message:"Token is valid",
+            success:true,
+        });
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({
+            data:[],
+            message:"Error in Token Validation",
+            success:false,
+            error,
+        });
+    }
+};
+
 const testController = (req, res) => {
     res.send("protected route");
 };
@@ -122,5 +150,6 @@ const testController = (req, res) => {
 module.exports = {
     registerController,
     loginController,
-    testController
+    testController,
+    tokenValidationController,
 };
