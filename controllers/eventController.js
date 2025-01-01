@@ -179,6 +179,7 @@ const userRSVPRequest = async(req, res) => {
         }
         
         event.attendes.push(userId);
+        event.rsvpCount++;
 
         await event.save();
 

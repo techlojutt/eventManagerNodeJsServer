@@ -21,8 +21,6 @@ authRouter.post('/login',loginController);
 authRouter.get('/validateToken',authMiddleware,tokenValidationController);
 
 
-
-
 authRouter.get('/test',authMiddleware,testController);
 
 

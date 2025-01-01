@@ -30,7 +30,6 @@ const eventSchema = new mongoose.Schema({
     attendes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Users'}],
     rsvpCount: {
         type: Number,
-        default: 0
     },
     createdAt: {
         type: Date,
