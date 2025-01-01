@@ -18,7 +18,7 @@ authRouter.post('/register',registerController);
 authRouter.post('/login',loginController);
 
 
-authRouter.post('/validateToken',authMiddleware,tokenValidationController);
+authRouter.get('/validateToken',authMiddleware,tokenValidationController);
 
 
 

@@ -1,51 +1,36 @@
 const jwt = require('jsonwebtoken');
 
+
+
 const authMiddleware = async (req, res, next) => {
+
     try {
-        // Check if Authorization header exists
-        const authHeader = req.headers.authorization;
-
-        if (!authHeader) {
+        console.log(req?.headers?.authorization,'req?.headers?.authorization');
+        if(!req?.headers?.authorization){
             return res.status(401).json({
-                data: [],
-                message: "Authorization header is required",
-                success: false,
+                data:[],
+                message:"authorization is required",
+                success:false,
             });
         }
-
-        // Check if Authorization header starts with 'Bearer'
-        if (!authHeader.startsWith("Bearer ")) {
-            return res.status(401).json({
-                data: [],
-                message: "Authorization header must be in the format: Bearer <token>",
-                success: false,
-            });
-        }
-
-        // Extract the token after 'Bearer'
-        const token = authHeader.split(" ")[1];
-
-        // Verify the token
+        const token = req?.headers?.authorization
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-        // Attach decoded user data to the request object
         req.user = decoded;
-
-        // Proceed to the next middleware or route
         next();
-    } catch (error) {
-        console.error("Error in auth middleware:", error);
-
-        // Send error response for invalid or expired tokens
-        res.status(401).json({
-            data: [],
-            message: "Invalid or expired token",
-            success: false,
-            error: error.message,
-        });
     }
-};
+    catch (error) {
+        console.log(error);
+        res.status(500).json({
+          data:[],
+          message:"error in auth middleware",
+          success:false,
+          error:error,
+        }  
+        )
+    }}
 
-module.exports = {
+
+
+    module.exports = {
     authMiddleware,
 };

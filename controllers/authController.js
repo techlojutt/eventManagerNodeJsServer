@@ -117,7 +117,7 @@ const loginController = async (req, res) => {
 
 const tokenValidationController = async (req, res) => {
     try{
-        const user = await Users.findById(req.user.id);
+        let user = await Users.findById(req.user.id);
         user = {
             name:user.name,
             email:user.email,
