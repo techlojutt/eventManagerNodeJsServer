@@ -95,8 +95,10 @@ const loginController = async (req, res) => {
                         token:token,
                         name:existingUser.name,
                         email:existingUser.email,
-                        phone:existingUser.phone,
-                        address:existingUser.address,
+                        id:existingUser._id,
+                        imageURL:existingUser.imageURL,
+                        created_at:existingUser.createdAt,
+                        updated_at:existingUser.updatedAt,
                     },
                     message:"User Logged In Successfully",
                     success:true
