@@ -160,6 +160,8 @@ const userRSVPRequest = async(req, res) => {
         const eventId = req.params.id;
         const userId = req.body.userId;
 
+        console.log(eventId, userId);
+
         const event = await Events.findById(eventId);
 
         if(!event){
