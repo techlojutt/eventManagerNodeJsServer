@@ -88,7 +88,7 @@ const getEventById = async(req,res)=>{
 
 const updateEvent = async(req,res)=>{
     try {
-        const event = await Events.findOneAndUpdate({id:req.params.id},{
+        const event = await Events.findOneAndUpdate({_id:req.params.id},{
             $set: {
                 title:req?.body?.title,
                 description:req?.body?.description,
