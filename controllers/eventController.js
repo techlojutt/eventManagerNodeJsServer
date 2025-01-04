@@ -97,7 +97,7 @@ const updateEvent = async(req,res)=>{
                 category:req?.body?.category,
                 visibility:req?.body?.visibility,
                 image:req?.body?.image,
-                updatedAt:Date.now()
+                eventDate:req?.body?.eventDate,
             }});
         
         
