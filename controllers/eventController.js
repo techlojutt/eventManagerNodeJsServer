@@ -12,7 +12,8 @@ const createEvent = async (req, res) => {
         category:req?.body?.category,
         visibility:req?.body?.visibility,
         createdBy:req?.body?.createdBy,
-        image:req?.body?.image,  
+        image:req?.body?.image,
+        eventDate:req?.body?.eventDate,
  });
 
  const output = await newEvent.save();
