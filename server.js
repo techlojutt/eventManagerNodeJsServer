@@ -5,12 +5,16 @@ var cors = require('cors')
 const connectDb = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const eventRouter = require('./routes/eventRoutes');
+const {sheduleEmailReminder} = require('./controllers/emailController');
+
 
 
 const app = express();
 app.use(cors())
 
 
+
+sheduleEmailReminder();
 
 
 const port = process.env.PORT || 3000;

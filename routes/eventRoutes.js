@@ -1,5 +1,5 @@
 const express = require("express")
-const {createEvent,getEvents,getEventById,updateEvent,deleteEvent,userRSVPRequest,searchAndFilterEvents} = require("../controllers/eventController")
+const {createEvent,getEvents,getEventById,updateEvent,deleteEvent,userRSVPRequest,searchAndFilterEvents, searchEventsByCategory} = require("../controllers/eventController")
 
 
 // router object
@@ -20,6 +20,8 @@ eventRouter.delete('/delete/:id', deleteEvent)
 eventRouter.post('/rsvp/:id',userRSVPRequest)
 
 eventRouter.get('/search',searchAndFilterEvents)
+
+eventRouter.get('/api/search',searchEventsByCategory)
 
 
 

@@ -161,7 +161,11 @@ const userRSVPRequest = async(req, res) => {
         const eventId = req.params.id;
         const userId = req.body.userId;
 
-        console.log(eventId, userId);
+        console.log(eventId, userId , 'userRSVPRequest');
+
+
+
+        console.log(eventId,userId);
 
         const event = await Events.findById(eventId);
 
@@ -203,6 +207,47 @@ const userRSVPRequest = async(req, res) => {
     }}
 
  
+    const searchEventsByCategory = async(req,res)=>{
+        
+        try {
+            if(!req.query.category){
+                return res.status(400).json({
+                    data: [],
+                    message: 'Category is required',
+                    success: false,
+                });
+            }
+
+          const events = await Events.find({ category: req.query.category });
+
+          if (events.length === 0){
+            return res.status(404).json({
+                data: [],
+                message: 'No events found for this category',
+                success: false,
+            });
+          }
+
+          res.status(200).json({
+              data: events,
+              message: 'Events fetched successfully',
+              success: true,
+          });
+  
+        } catch (error) {
+
+            console.log(error);
+            res.status(500).json({
+                data: [],
+                message: 'Error in fetching events',
+                success: false,
+                error,
+            });
+            
+        }
+
+    } 
+
     const searchAndFilterEvents = async (req, res) => {
         try {
        const event = await Event.find({
@@ -242,4 +287,5 @@ module.exports = {
     deleteEvent,
     userRSVPRequest,
     searchAndFilterEvents,
+    searchEventsByCategory,
 }
